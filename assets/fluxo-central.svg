@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="350" viewBox="0 0 1200 350" role="img" aria-label="Esquema do fluxo da Central de Vídeos">
+<rect width="1200" height="350" rx="18" fill="#132f3b"/>
+<g font-family="Segoe UI,Arial,sans-serif"><text x="38" y="49" font-size="17" letter-spacing="3" fill="#a7c6cb">CENTRAL DE VÍDEOS · FLUXO DE TRABALHO</text>
+<path d="M241 164H300M560 164H620M897 164H951" stroke="#86c3ca" stroke-width="3" fill="none"/>
+<rect x="38" y="100" width="204" height="136" rx="12" fill="#234b58"/><path d="m114 127 0 43 35-22z" fill="#e4f0e7"/><text x="140" y="209" text-anchor="middle" font-size="22" fill="#fff">Vídeo original</text>
+<rect x="300" y="100" width="260" height="136" rx="12" fill="#f5f6ef"/><text x="325" y="137" font-size="21" fill="#183e4a">Fala transcrita</text><text x="325" y="174" font-size="21" fill="#183e4a">Texto nas imagens</text><text x="325" y="211" font-size="21" fill="#183e4a">Observações visuais</text>
+<rect x="620" y="100" width="277" height="136" rx="12" fill="#f5f6ef"/><text x="646" y="143" font-size="22" fill="#183e4a">Evidências com tempo</text><text x="646" y="180" font-size="17" fill="#53717b">Buscar · revisar · navegar</text><text x="646" y="208" font-size="17" fill="#53717b">Conferir no vídeo de origem</text>
+<rect x="951" y="100" width="211" height="136" rx="12" fill="#2a626d"/><text x="1056" y="150" text-anchor="middle" font-size="23" fill="#fff">Meus fluxos</text><text x="1056" y="181" text-anchor="middle" font-size="23" fill="#fff">de IA</text><text x="1056" y="212" text-anchor="middle" font-size="16" fill="#c6e2df">Pacote / síntese local</text>
+<text x="38" y="292" font-size="19" fill="#c0d5d8">Amostragem ajustável · processamento por etapas · reaproveitamento de resultados</text>
+<text x="38" y="324" font-size="14" fill="#8eaeb6">Diagrama explicativo. O vídeo e as evidências continuam disponíveis para revisão.</text></g></svg>

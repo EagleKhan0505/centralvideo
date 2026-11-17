@@ -1,32 +1,39 @@
-# Central de Vídeos
+# CentralVideo
 
-**Preparing video content for my AI assistants through a local workflow that I can tune and optimize.**
+**Making video content usable by my own AI assistants, with control over the processing.**
 
-[Português](README.md) · [Gustavo Amaral](https://github.com/EagleKhan0505)
+[Português](README.md) · [Portfolio](https://github.com/EagleKhan0505)
 
-## Motivation
+I wanted to bring videos into my AI workflows without adding another video-analysis subscription. I also wanted to decide what to extract, how much processing to spend, and how to return to the original moment when an answer needed checking. That is where CentralVideo started.
 
-The AI assistants I used could not always accept or interpret video directly. I built Central de Vídeos to turn a recording into organized speech, selected frames, on-screen text and timestamped evidence that my AI workflows can consume.
+The application turns a video into material an assistant can consult: speech transcripts, text detected in frames, visual observations and timestamps. Local processing uses my existing computer and models, without a paid video-analysis API in this workflow. Hardware and electricity still have a cost.
 
-The local processing uses my existing computer and local models, without an additional video-analysis subscription or paid processing API. I can adjust sampling, coverage and resource use for each task.
+![Illustrated processing flow, with Portuguese labels](assets/fluxo-central.svg)
 
-## Implemented capabilities
+*Diagram of the implemented workflow, not an application screenshot.*
 
-- Local interface for ingestion, progress tracking and reviewing outputs.
-- Audio transcription, frame selection, OCR and visual-analysis components.
-- Timestamped evidence linked to the source recording.
-- Configurable processing profiles and sampling budgets.
-- Reuse of compatible results, checkpoints and execution history.
-- Structured exports for downstream AI analysis.
+## From a file to a useful moment
 
-## My contribution
+Speech recognition handles the audio, OCR reads selected frames, and visual analysis adds information that speech alone cannot provide. The outputs retain their relationship to the video's timeline.
 
-I identified the need, defined the workflow and guided tool integration and AI-assisted development. I use output inspection, testing and bottleneck analysis to drive improvements.
+I can search for a term, jump to its timestamp, review the transcript and export a package for other AI workflows. Local synthesis is an additional stage; the underlying evidence remains available for inspection.
 
-## Current stage
+Sampling is an important design decision. Processing every frame can be impractical on the available machine. Frame selection, OCR and vision budgets, chunked transcription and stage reuse let me adjust the workload. A synthesis problem does not necessarily require repeating extraction.
 
-Local application under development, with real-video processing and evaluation records. A long-lecture profile is implemented; multi-hour recordings still require validation. Sampling affects coverage, and generated text and interpretations require review.
+## A concrete iteration
 
-**Technologies:** Python, FFmpeg, faster-whisper, OCR, local models and Ollama.
+<img src="assets/central-cobertura.jpg" alt="Actual interface excerpt reporting synthesis input coverage" width="360" align="right">
 
-This repository presents the project. Application source code, model files and working videos are kept private.
+One interface test revealed that a completed pipeline had supplied only part of the transcript to synthesis. After a correction, the targeted retest sent **1,784 out of 1,784 transcript characters**. The interface also reported **50 out of 95 evidence excerpts** selected for the model, with the others preserved separately.
+
+These are coverage counts from that test, not an AI accuracy score. The screenshot comes from version 2.4 on November 3, 2026. The test video was about 86 seconds long. Searching for a term and jumping to its moment around the 60-second mark were also checked through the interface.
+
+<br clear="all">
+
+## The engineering work behind it
+
+The project combines video processing, transcription quality, evidence selection and compute constraints. I use the hypothesis-driven approach I developed through research to investigate bottlenecks and evaluate changes.
+
+The implementation uses Python, FFmpeg/PyAV, faster-whisper, OCR and local models through Ollama. A long-lecture profile is in development; the test shown here does not establish performance on multi-hour recordings. Extracted and generated content still needs review.
+
+This repository contains selected documentation and evidence. The complete application, working videos and configuration remain private.

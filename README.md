@@ -1,44 +1,41 @@
 # Central de Vídeos
 
-**Uma forma de permitir que meus assistentes de IA consumam vídeos, com um processamento que eu consigo ajustar e otimizar.**
+**Uma forma de dar aos meus assistentes de IA acesso ao conteúdo dos vídeos, com controle sobre o processamento.**
 
-[English](README.en.md) · [Gustavo Amaral](https://github.com/EagleKhan0505)
+[English](README.en.md) · [Portfólio](https://github.com/EagleKhan0505)
 
-## Por que criei
+Eu queria usar vídeos nos meus próprios fluxos de IA, sem depender de mais uma assinatura para conseguir analisá-los. Também queria poder escolher o que extrair, quanto tempo gastar e como voltar ao trecho original quando uma resposta parecesse duvidosa. A Central nasceu dessa necessidade.
 
-Encontrei uma limitação recorrente no meu uso de IA: os assistentes que eu utilizava nem sempre conseguiam receber ou interpretar diretamente um vídeo. Mesmo quando parte do conteúdo era acessível, era difícil controlar quais informações chegavam ao modelo.
+O programa transforma o vídeo em material que um assistente consegue consultar: fala transcrita, texto encontrado nas imagens, observações visuais e referências de tempo. O processamento local aproveita o computador e os modelos que já uso. Nesse fluxo, não há contratação de uma API paga para analisar o vídeo; o custo de hardware e energia continua existindo.
 
-Criei a Central para transformar o vídeo em um conjunto organizado de fala, imagens, texto em tela e referências temporais. Assim, consigo preparar o conteúdo para meus próprios fluxos de IA e decidir onde investir processamento, aproveitando o computador e os modelos locais que já tenho, **sem contratar um serviço adicional de análise de vídeo nem pagar uma API para o processamento local**.
+![Fluxo da Central: vídeo, extração, evidências temporais e uso por IA](assets/fluxo-central.svg)
 
-## Como funciona
+*Esquema do fluxo implementado; não é uma captura da interface.*
 
-```mermaid
-flowchart LR
-    A[Vídeo] --> B[Preparação local]
-    B --> C[Fala e transcrição]
-    B --> D[Imagens e texto em tela]
-    C --> E[Evidências com horários]
-    D --> E
-    E --> F[Material para assistentes de IA]
-```
+## Do arquivo ao trecho que importa
 
-## O que desenvolvi
+Ao receber um vídeo, a Central separa o trabalho em etapas. A transcrição cuida da fala; o OCR lê texto em quadros selecionados; a análise visual acrescenta informações que o áudio não contém. Cada resultado mantém sua relação com o tempo do vídeo.
 
-- Interface local para receber vídeos, acompanhar etapas e consultar resultados.
-- Transcrição de áudio, seleção de imagens, OCR e recursos de análise visual.
-- Organização de evidências com horários para voltar ao trecho de origem.
-- Parâmetros de amostragem e perfis de processamento para equilibrar cobertura, tempo e uso do computador.
-- Reutilização de resultados compatíveis, checkpoints e histórico de execuções.
-- Exportação de material estruturado para análise nos meus fluxos de IA.
+Isso permite procurar um termo e voltar ao instante correspondente, revisar a transcrição e reunir os materiais em um pacote para outros fluxos de IA. A síntese local é uma etapa adicional: as evidências continuam disponíveis para conferência.
 
-## Minha contribuição
+O controle de amostragem é parte importante do projeto. Processar todas as imagens pode tornar o trabalho inviável no computador disponível. Por isso, desenvolvi opções de seleção de quadros, orçamento de OCR e visão, processamento de fala em blocos e reaproveitamento de etapas já concluídas. Posso investigar um problema na síntese sem necessariamente refazer toda a extração.
 
-Parti de uma necessidade do meu próprio uso, defini o fluxo e conduzi a integração das ferramentas com apoio de IA no desenvolvimento. Uso testes, inspeção dos resultados e investigação de gargalos para decidir o que precisa ser refinado.
+## Uma correção que mostra como o projeto evolui
 
-## Estado atual
+<img src="assets/central-cobertura.jpg" alt="Recorte real da interface mostrando cobertura da síntese e preservação das evidências" width="360" align="right">
 
-Aplicação local em desenvolvimento, com processamento de vídeos reais e registros de avaliação. O perfil de aulas longas está implementado; a validação de gravações de várias horas permanece uma etapa de evolução. A cobertura depende das configurações escolhidas, e transcrições e interpretações continuam sujeitas a revisão.
+Em um teste pela interface, o processamento terminava, mas a síntese recebia apenas parte da fala. Esse foi um dos gargalos que precisei investigar: concluir uma etapa não garantia que o material relevante tivesse chegado à seguinte.
 
-**Tecnologias:** Python, FFmpeg, faster-whisper, OCR, modelos locais e Ollama.
+Depois do ajuste, o reteste enviou **1.784 de 1.784 caracteres da transcrição** à síntese. A interface também passou a explicitar que **50 de 95 excertos** foram enviados ao modelo e que os demais continuavam nas evidências. São medidas de cobertura daquele teste, não uma taxa de acerto da IA.
 
-Esta é a apresentação pública do projeto. O código da aplicação, os modelos e os vídeos de trabalho não são distribuídos neste repositório.
+O registro ao lado é um recorte real da versão 2.4, em 03/11/2026. O vídeo usado tinha cerca de 86 segundos; a busca por um termo e a navegação ao instante de aproximadamente 60 segundos também foram verificadas na interface.
+
+<br clear="all">
+
+## O que estou aprendendo a equilibrar
+
+Este projeto junta questões que, no início, pareciam separadas: edição e leitura de vídeo, qualidade de transcrição, escolha de evidências e tempo de processamento. Minha experiência em pesquisa ajuda a formular hipóteses sobre os gargalos e comparar o resultado de cada mudança.
+
+A implementação usa Python, FFmpeg/PyAV, faster-whisper, OCR e modelos locais via Ollama. O perfil para aulas longas está em desenvolvimento; o teste acima não comprova desempenho em gravações de várias horas. Transcrição, OCR e descrições visuais ainda exigem revisão.
+
+Este repositório reúne a apresentação e evidências selecionadas. A aplicação completa, os vídeos de trabalho e suas configurações permanecem privados.
