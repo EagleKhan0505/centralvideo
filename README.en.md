@@ -1,5 +1,9 @@
 # CentralVideo
 
+**In development**<br>
+Estimated start: September 2026 · Last recorded update: November 3, 2026<br>
+<sub>Presentation updated on November 17, 2026.</sub>
+
 **Making video content usable by my own AI assistants, with control over the processing.**
 
 [Português](README.md) · [Portfolio](https://github.com/EagleKhan0505)

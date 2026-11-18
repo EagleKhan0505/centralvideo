@@ -1,5 +1,9 @@
 # Central de Vídeos
 
+**Em desenvolvimento**<br>
+Início estimado: 09/2026 · Última atualização registrada: 03/11/2026<br>
+<sub>Apresentação atualizada em 17/11/2026.</sub>
+
 **Uma forma de dar aos meus assistentes de IA acesso ao conteúdo dos vídeos, com controle sobre o processamento.**
 
 [English](README.en.md) · [Portfólio](https://github.com/EagleKhan0505)
